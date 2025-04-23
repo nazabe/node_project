@@ -134,7 +134,28 @@ Asegúrate de tener instaladas las siguientes herramientas antes de empezar:
 
 ## Estructura de Carpetas
 
-<pre> ```text / ├── dist/ # Código JavaScript compilado (generado por npm run build) ├── node_modules/ # Dependencias del proyecto (generado por npm install) ├── prisma/ # Configuración y migraciones de Prisma │ └── schema.prisma # Esquema de la base de datos ├── src/ # Código fuente TypeScript │ └── app.ts # Punto de entrada principal de la aplicación (u otro nombre como server.ts, index.ts) │ # --- Agrega aquí otras subcarpetas importantes (ej: /controllers, /routes, /services, /models, etc.) --- ├── .env # Variables de entorno locales (¡No subir a Git!) ├── .env.example # Ejemplo de variables de entorno (Subir a Git) ├── .gitignore # Archivos y carpetas ignorados por Git ├── docker-compose.yml # Definición de servicios Docker (App, DB, etc.) ├── Dockerfile # Instrucciones para construir la imagen Docker de la app (si aplica) ├── eslint.config.mjs # Configuración de ESLint ├── LICENSE # Licencia del proyecto ├── package-lock.json # Registro exacto de versiones de dependencias (npm) ├── package.json # Metadatos, dependencias y scripts del proyecto ├── README.md # Este archivo └── tsconfig.json # Configuración del compilador TypeScript ``` </pre>
+```text
+/
+├── dist/                 # Código JavaScript compilado (generado por npm run build)
+├── node_modules/         # Dependencias del proyecto (generado por npm install)
+├── prisma/               # Configuración y migraciones de Prisma
+│   └── schema.prisma     # Esquema de la base de datos
+├── src/                  # Código fuente TypeScript
+│   └── app.ts            # Punto de entrada principal de la aplicación (u otro nombre como server.ts, index.ts)
+│   # --- Agrega aquí otras subcarpetas importantes (ej: /controllers, /routes, /services, /models, etc.) ---
+├── .env                  # Variables de entorno locales (¡No subir a Git!)
+├── .env.example          # Ejemplo de variables de entorno (Subir a Git)
+├── .gitignore            # Archivos y carpetas ignorados por Git
+├── docker-compose.yml    # Definición de servicios Docker (App, DB, etc.)
+├── Dockerfile            # Instrucciones para construir la imagen Docker de la app (si aplica)
+├── eslint.config.mjs     # Configuración de ESLint
+├── LICENSE               # Licencia del proyecto
+├── package-lock.json     # Registro exacto de versiones de dependencias (npm)
+├── package.json          # Metadatos, dependencias y scripts del proyecto
+├── README.md             # Este archivo
+└── tsconfig.json         # Configuración del compilador TypeScript
+```
+
 
 ## Autores
 
