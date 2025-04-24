@@ -1,0 +1,44 @@
+# docker-compose.yml
+version: "3.8"
+
+services:
+  # Servicio de la Base de Datos MySQL
+  mysql:
+    image: mysql:8 # Usa la imagen oficial de MySQL 8
+    container_name: specialy_mysql_db # Nombre opcional para el contenedor
+    restart: always # Reinicia el contenedor si se detiene
+    environment:
+      # Estas variables configuran el contenedor de MySQL al iniciar
+      MYSQL_ROOT_PASSWORD: rootpassword # Contraseña para el usuario root
+      MYSQL_DATABASE: specialy_db # Nombre de la base de datos a crear
+    ports:
+      # Mapea el puerto 3306 del host al 3306 del contenedor
+      # Permite conectar a la BD desde tu máquina local (localhost:3306)
+      - "3306:3306"
+    volumes:
+      # Monta un volumen llamado 'mysql_data' para persistir los datos de la BD
+      - mysql_data:/var/lib/mysql
+
+  # Servicio de la Aplicación Node.js/Express
+  app:
+    container_name: specialy_app # Nombre opcional para el contenedor
+    # Construye la imagen usando el Dockerfile en el directorio actual (.)
+    build: .
+    restart: always # Reinicia el contenedor si se detiene
+    # Asegura que el servicio 'mysql' esté iniciado antes de iniciar 'app'
+    depends_on:
+      - mysql
+    ports:
+      # Mapea el puerto 3000 del host al 3000 del contenedor (donde escucha Express)
+      - "3000:3000"
+    environment:
+      # Pasa la URL de conexión a la BD a la aplicación dentro del contenedor
+      # Usa 'mysql' (el nombre del servicio) como host
+      DATABASE_URL: "mysql://root:rootpassword@mysql:3306/specialy_db"
+      # Pasa el puerto en el que la app debe escuchar dentro del contenedor
+      # app.ts usará esto o el valor por defecto 3000
+      PORT: 3000
+
+# Define los volúmenes nombrados usados por los servicios
+volumes:
+  mysql_data: # Volumen para persistir los datos de MySQL
